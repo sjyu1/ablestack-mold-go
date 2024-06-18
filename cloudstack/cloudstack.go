@@ -22,7 +22,7 @@ package cloudstack
 import (
 	"bytes"
 	"crypto/hmac"
-	"crypto/sha1"
+	"crypto/sha256"
 	"crypto/tls"
 	"encoding/base64"
 	"encoding/json"
@@ -474,11 +474,11 @@ func (cs *CloudStackClient) newRawRequest(api string, post bool, params url.Valu
 	// * Serialize parameters, URL encoding only values and sort them by key, done by EncodeValues
 	// * Convert the entire argument string to lowercase
 	// * Replace all instances of '+' to '%20'
-	// * Calculate HMAC SHA1 of argument string with CloudStack secret
+	// * Calculate HMAC sha256 of argument string with CloudStack secret
 	// * URL encode the string and convert to base64
 	s := EncodeValues(params)
 	s2 := strings.ToLower(s)
-	mac := hmac.New(sha1.New, []byte(cs.secret))
+	mac := hmac.New(sha256.New, []byte(cs.secret))
 	mac.Write([]byte(s2))
 	signature := base64.StdEncoding.EncodeToString(mac.Sum(nil))
 
