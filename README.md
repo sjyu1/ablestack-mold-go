@@ -1,6 +1,6 @@
 # cloudstack-go
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/apache/cloudstack-go/v2/cloudstack.svg)](https://pkg.go.dev/github.com/apache/cloudstack-go/v2/cloudstack)
+[![Go Reference](https://pkg.go.dev/badge/github.com/ablecloud-team/ablestack-mold-go/v2/cloudstack.svg)](https://pkg.go.dev/github.com/ablecloud-team/ablestack-mold-go/v2/cloudstack)
 
 A CloudStack API client enabling Go programs to interact with CloudStack in a simple and uniform way
 
@@ -15,7 +15,7 @@ To be able to find the API command you want, they are grouped by 'services' whic
 The cloudstack package is always generated against the latest stable CloudStack release (currently v4.18.x). As long as the API changes were minimum across subsequent CloudStack releases it was possible to have the generator code handle API changes such that they were backward compatible.
 However, over time, with frequent API changes observed across releases of Apache CloudStack(ACS), we will have the SDK releases tagged based on the ACS version.
 
-Please see the package documentation on [go.dev](https://pkg.go.dev/github.com/apache/cloudstack-go/v2/cloudstack).
+Please see the package documentation on [go.dev](https://pkg.go.dev/github.com/ablecloud-team/ablestack-mold-go/v2/cloudstack).
 
 ## Example
 
@@ -56,7 +56,7 @@ Last but not the least, there are a lot of helper functions that will try to aut
 
 ## Developer Guide
 
-The SDK relies on the  `generate.go` script to auto generate the code for all the supported APIs listed in the `listApis.json` file.
+The SDK relies on the `generate.go` script to auto generate the code for all the supported APIs listed in the `listApis.json` file.
 The `listAPIs.json` file holds the output of `listApis` command for a specific release of CloudStack.
 
 ```
@@ -67,9 +67,9 @@ make all
 
 ## Getting Help
 
-_Please try to see if the [module documentation](https://pkg.go.dev/github.com/apache/cloudstack-go/v2/cloudstack) can provide some answers first!_
+_Please try to see if the [module documentation](https://pkg.go.dev/github.com/ablecloud-team/ablestack-mold-go/v2/cloudstack) can provide some answers first!_
 
-* If you have an issue: report it on the [issue tracker](https://github.com/apache/cloudstack-go/issues)
+- If you have an issue: report it on the [issue tracker](https://github.com/ablecloud-team/ablestack-mold-go/issues)
 
 ## History
 
