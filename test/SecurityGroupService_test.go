@@ -22,7 +22,7 @@ package test
 import (
 	"testing"
 
-	"github.com/apache/cloudstack-go/v2/cloudstack"
+	"github.com/ablecloud-team/ablestack-mold-go/v2/cloudstack"
 )
 
 func TestSecurityGroupService(t *testing.T) {
