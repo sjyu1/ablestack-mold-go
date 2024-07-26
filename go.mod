@@ -1,4 +1,4 @@
-module github.com/ablecloud-team/ablestack-mold-go/v2
+module github.com/sjyu1/ablestack-mold-go/v2
 
 go 1.17
 
