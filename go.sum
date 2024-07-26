@@ -1,3 +1,5 @@
+github.com/ablecloud-team/ablestack-mold-go/v2 v2.16.2 h1:ZK35AySMPsrdW5qg0vIS6HtyMmnzdLEcP837YZp4XMY=
+github.com/ablecloud-team/ablestack-mold-go/v2 v2.16.2/go.mod h1:nN0WLt6eUs0reL7EIyjoV5IkCn1th8eFaHt14wHCeXQ=
 github.com/chzyer/logex v1.1.10/go.mod h1:+Ywpsq7O8HXn0nuIou7OrIPyXbp3wmkHB+jjWRnGsAI=
 github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e/go.mod h1:nSuG5e5PlCu98SY8svDHJxuZscDgtXS6KTTbou5AhLI=
 github.com/chzyer/test v0.0.0-20180213035817-a1ea475d72b1/go.mod h1:Q3SI9o4m/ZMnBNeIyt5eFwwo7qiLfzFZmjNmxjkiQlU=
