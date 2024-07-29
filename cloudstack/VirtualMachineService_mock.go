@@ -934,5 +934,34 @@ func (m *MockVirtualMachineServiceIface) AllocateVbmcToVM(p *AllocateVbmcToVMPar
 // AllocateVbmcToVM indicates an expected call of AllocateVbmcToVM.
 func (mr *MockVirtualMachineServiceIfaceMockRecorder) AllocateVbmcToVM(p interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AllocateVbmcToVM", reflect.TypeOf((*MockVirtualMachineServiceIface)(nil).AllocateVbmcToVM), p)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AllocateVbmcToVM", reflect.TypeOf((*MockVirtualMachineServiceIface)(nil).CloneVirtualMachine), p)
+}
+
+// NewCloneVirtualMachineParams mocks base method.
+func (m *MockVirtualMachineServiceIface) NewCloneVirtualMachineParams(virtualmachineid string) *CloneVirtualMachineParams {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "NewCloneVirtualMachineParams", virtualmachineid)
+	ret0, _ := ret[0].(*CloneVirtualMachineParams)
+	return ret0
+}
+
+// NewCloneVirtualMachineParams indicates an expected call of NewCloneVirtualMachineParams.
+func (mr *MockVirtualMachineServiceIfaceMockRecorder) NewCloneVirtualMachineParams(virtualmachineid interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewCloneVirtualMachineParams", reflect.TypeOf((*MockVirtualMachineServiceIface)(nil).NewCloneVirtualMachineParams), virtualmachineid)
+}
+
+// CloneVirtualMachine mocks base method.
+func (m *MockVirtualMachineServiceIface) CloneVirtualMachine(p *CloneVirtualMachineParams) (*CloneVirtualMachineResponse, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "CloneVirtualMachine", p)
+	ret0, _ := ret[0].(*CloneVirtualMachineResponse)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// CloneVirtualMachine indicates an expected call of CloneVirtualMachine.
+func (mr *MockVirtualMachineServiceIfaceMockRecorder) CloneVirtualMachine(p interface{}) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CloneVirtualMachine", reflect.TypeOf((*MockVirtualMachineServiceIface)(nil).CloneVirtualMachine), p)
 }
