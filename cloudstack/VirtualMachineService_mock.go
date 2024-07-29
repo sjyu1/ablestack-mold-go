@@ -908,7 +908,7 @@ func (mr *MockVirtualMachineServiceIfaceMockRecorder) UpdateVirtualMachine(p int
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "UpdateVirtualMachine", reflect.TypeOf((*MockVirtualMachineServiceIface)(nil).UpdateVirtualMachine), p)
 }
 
-// NewCloneVirtualMachineParams mocks base method.
+// NewAllocateVbmcToVMParams mocks base method.
 func (m *MockVirtualMachineServiceIface) NewAllocateVbmcToVMParams(virtualmachineid string) *AllocateVbmcToVMParams {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "NewAllocateVbmcToVMParams", virtualmachineid)
@@ -916,13 +916,13 @@ func (m *MockVirtualMachineServiceIface) NewAllocateVbmcToVMParams(virtualmachin
 	return ret0
 }
 
-// NewCloneVirtualMachineParams indicates an expected call of NewCloneVirtualMachineParams.
+// NewAllocateVbmcToVMParams indicates an expected call of NewAllocateVbmcToVMParams.
 func (mr *MockVirtualMachineServiceIfaceMockRecorder) NewAllocateVbmcToVMParams(virtualmachineid interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewAllocateVbmcToVMParams", reflect.TypeOf((*MockVirtualMachineServiceIface)(nil).NewAllocateVbmcToVMParams), virtualmachineid)
 }
 
-// CloneVirtualMachine mocks base method.
+// AllocateVbmcToVM mocks base method.
 func (m *MockVirtualMachineServiceIface) AllocateVbmcToVM(p *AllocateVbmcToVMParams) (*AllocateVbmcToVMResponse, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "AllocateVbmcToVM", p)
@@ -931,7 +931,7 @@ func (m *MockVirtualMachineServiceIface) AllocateVbmcToVM(p *AllocateVbmcToVMPar
 	return ret0, ret1
 }
 
-// CloneVirtualMachine indicates an expected call of CloneVirtualMachine.
+// AllocateVbmcToVM indicates an expected call of AllocateVbmcToVM.
 func (mr *MockVirtualMachineServiceIfaceMockRecorder) AllocateVbmcToVM(p interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AllocateVbmcToVM", reflect.TypeOf((*MockVirtualMachineServiceIface)(nil).AllocateVbmcToVM), p)
