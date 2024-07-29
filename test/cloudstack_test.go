@@ -28,7 +28,7 @@ import (
 	"net/url"
 	"testing"
 
-	"github.com/ablecloud-team/ablestack-mold-go/v2/cloudstack"
+	"github.com/sjyu1/ablestack-mold-go/v2/cloudstack"
 
 	. "github.com/onsi/ginkgo/v2"
 	. "github.com/onsi/gomega"

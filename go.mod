@@ -3,7 +3,6 @@ module github.com/sjyu1/ablestack-mold-go/v2
 go 1.17
 
 require (
-	github.com/ablecloud-team/ablestack-mold-go/v2 v2.16.2
 	github.com/golang/mock v1.6.0
 	github.com/onsi/ginkgo/v2 v2.9.1
 	github.com/onsi/gomega v1.27.4

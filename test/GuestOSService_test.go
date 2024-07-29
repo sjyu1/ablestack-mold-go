@@ -22,7 +22,7 @@ package test
 import (
 	"testing"
 
-	"github.com/ablecloud-team/ablestack-mold-go/v2/cloudstack"
+	"github.com/sjyu1/ablestack-mold-go/v2/cloudstack"
 )
 
 func TestGuestOSService(t *testing.T) {
