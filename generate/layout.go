@@ -117,6 +117,7 @@ var layout = apiInfo{
 		"updateDefaultNicForVirtualMachine",
 		"updateVirtualMachine",
 		"listVirtualMachinesUsageHistory",
+		"cloneVirtualMachine",
 	},
 	"VPNService": {
 		"addVpnUser",
