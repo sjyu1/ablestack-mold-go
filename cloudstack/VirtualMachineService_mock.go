@@ -909,30 +909,30 @@ func (mr *MockVirtualMachineServiceIfaceMockRecorder) UpdateVirtualMachine(p int
 }
 
 // NewCloneVirtualMachineParams mocks base method.
-func (m *MockVirtualMachineServiceIface) NewCloneVirtualMachineParams(virtualmachineid string) *CloneVirtualMachineParams {
+func (m *MockVirtualMachineServiceIface) NewAllocateVbmcToVMParams(virtualmachineid string) *AllocateVbmcToVMParams {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "NewCloneVirtualMachineParams", virtualmachineid)
-	ret0, _ := ret[0].(*CloneVirtualMachineParams)
+	ret := m.ctrl.Call(m, "NewAllocateVbmcToVMParams", virtualmachineid)
+	ret0, _ := ret[0].(*AllocateVbmcToVMParams)
 	return ret0
 }
 
 // NewCloneVirtualMachineParams indicates an expected call of NewCloneVirtualMachineParams.
-func (mr *MockVirtualMachineServiceIfaceMockRecorder) NewCloneVirtualMachineParams(virtualmachineid interface{}) *gomock.Call {
+func (mr *MockVirtualMachineServiceIfaceMockRecorder) NewAllocateVbmcToVMParams(virtualmachineid interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewCloneVirtualMachineParams", reflect.TypeOf((*MockVirtualMachineServiceIface)(nil).NewCloneVirtualMachineParams), virtualmachineid)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NewAllocateVbmcToVMParams", reflect.TypeOf((*MockVirtualMachineServiceIface)(nil).NewAllocateVbmcToVMParams), virtualmachineid)
 }
 
 // CloneVirtualMachine mocks base method.
-func (m *MockVirtualMachineServiceIface) CloneVirtualMachine(p *CloneVirtualMachineParams) (*CloneVirtualMachineResponse, error) {
+func (m *MockVirtualMachineServiceIface) AllocateVbmcToVM(p *AllocateVbmcToVMParams) (*AllocateVbmcToVMResponse, error) {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "CloneVirtualMachine", p)
-	ret0, _ := ret[0].(*CloneVirtualMachineResponse)
+	ret := m.ctrl.Call(m, "AllocateVbmcToVM", p)
+	ret0, _ := ret[0].(*AllocateVbmcToVMResponse)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // CloneVirtualMachine indicates an expected call of CloneVirtualMachine.
-func (mr *MockVirtualMachineServiceIfaceMockRecorder) CloneVirtualMachine(p interface{}) *gomock.Call {
+func (mr *MockVirtualMachineServiceIfaceMockRecorder) AllocateVbmcToVM(p interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "CloneVirtualMachine", reflect.TypeOf((*MockVirtualMachineServiceIface)(nil).CloneVirtualMachine), p)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "AllocateVbmcToVM", reflect.TypeOf((*MockVirtualMachineServiceIface)(nil).AllocateVbmcToVM), p)
 }
