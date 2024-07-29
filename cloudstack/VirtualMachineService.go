@@ -84,7 +84,7 @@ type VirtualMachineServiceIface interface {
 	GetVirtualMachinesUsageHistoryByName(name string, opts ...OptionFunc) (*VirtualMachinesUsageHistory, int, error)
 	GetVirtualMachinesUsageHistoryByID(id string, opts ...OptionFunc) (*VirtualMachinesUsageHistory, int, error)
 	CloneVirtualMachine(p *CloneVirtualMachineParams) (*CloneVirtualMachineResponse, error)
-	NewCloneVirtualMachineParams(id string) *CloneVirtualMachineParams
+	NewCloneVirtualMachineParams(virtualmachineid string) *CloneVirtualMachineParams
 }
 
 type AddNicToVirtualMachineParams struct {
