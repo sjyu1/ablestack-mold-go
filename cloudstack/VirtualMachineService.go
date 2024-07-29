@@ -83,8 +83,8 @@ type VirtualMachineServiceIface interface {
 	GetVirtualMachinesUsageHistoryID(name string, opts ...OptionFunc) (string, int, error)
 	GetVirtualMachinesUsageHistoryByName(name string, opts ...OptionFunc) (*VirtualMachinesUsageHistory, int, error)
 	GetVirtualMachinesUsageHistoryByID(id string, opts ...OptionFunc) (*VirtualMachinesUsageHistory, int, error)
-	CloneVirtualMachine(p *CloneVirtualMachineParams) (*CloneVirtualMachineResponse, error)
-	NewCloneVirtualMachineParams(virtualmachineid string) *CloneVirtualMachineParams
+	AllocateVbmcToVM(p *AllocateVbmcToVMParams) (*AllocateVbmcToVMResponse, error)
+	NewAllocateVbmcToVMParams(virtualmachineid string) *AllocateVbmcToVMParams
 }
 
 type AddNicToVirtualMachineParams struct {
@@ -9830,12 +9830,12 @@ type VirtualMachinesUsageHistory struct {
 	Stats       []string `json:"stats"`
 }
 
-// CloneVirtualMachine
-type CloneVirtualMachineParams struct {
+// AllocateVbmcToVM
+type AllocateVbmcToVMParams struct {
 	p map[string]interface{}
 }
 
-func (p *CloneVirtualMachineParams) toURLValues() url.Values {
+func (p *AllocateVbmcToVMParams) toURLValues() url.Values {
 	u := url.Values{}
 	if p.p == nil {
 		return u
@@ -9843,43 +9843,23 @@ func (p *CloneVirtualMachineParams) toURLValues() url.Values {
 	if v, found := p.p["virtualmachineid"]; found {
 		u.Set("virtualmachineid", v.(string))
 	}
-	if v, found := p.p["name"]; found {
-		u.Set("name", v.(string))
-	}
-	if v, found := p.p["account"]; found {
-		u.Set("account", v.(string))
-	}
-	if v, found := p.p["domainid"]; found {
-		u.Set("domainid", v.(string))
-	}
-	if v, found := p.p["startvm"]; found {
-		vv := strconv.FormatBool(v.(bool))
-		u.Set("startvm", vv)
-	}
-	if v, found := p.p["type"]; found {
-		u.Set("type", v.(string))
-	}
-	if v, found := p.p["zoneid"]; found {
-		vv := strings.Join(v.([]string), ",")
-		u.Set("zoneid", vv)
-	}
 	return u
 }
 
-func (p *CloneVirtualMachineParams) SetVirtualmachineid(v string) {
+func (p *AllocateVbmcToVMParams) SetVirtualmachineid(v string) {
 	if p.p == nil {
 		p.p = make(map[string]interface{})
 	}
 	p.p["virtualmachineid"] = v
 }
 
-func (p *CloneVirtualMachineParams) ResetVirtualmachineid() {
+func (p *AllocateVbmcToVMParams) ResetVirtualmachineid() {
 	if p.p != nil && p.p["virtualmachineid"] != nil {
 		delete(p.p, "virtualmachineid")
 	}
 }
 
-func (p *CloneVirtualMachineParams) GetVirtualmachineid() (string, bool) {
+func (p *AllocateVbmcToVMParams) GetVirtualmachineid() (string, bool) {
 	if p.p == nil {
 		p.p = make(map[string]interface{})
 	}
@@ -9887,147 +9867,21 @@ func (p *CloneVirtualMachineParams) GetVirtualmachineid() (string, bool) {
 	return value, ok
 }
 
-func (p *CloneVirtualMachineParams) SetName(v string) {
-	if p.p == nil {
-		p.p = make(map[string]interface{})
-	}
-	p.p["name"] = v
-}
-
-func (p *CloneVirtualMachineParams) ResetName() {
-	if p.p != nil && p.p["name"] != nil {
-		delete(p.p, "name")
-	}
-}
-
-func (p *CloneVirtualMachineParams) GetName() (string, bool) {
-	if p.p == nil {
-		p.p = make(map[string]interface{})
-	}
-	value, ok := p.p["name"].(string)
-	return value, ok
-}
-
-func (p *CloneVirtualMachineParams) SetAccount(v string) {
-	if p.p == nil {
-		p.p = make(map[string]interface{})
-	}
-	p.p["account"] = v
-}
-
-func (p *CloneVirtualMachineParams) ResetAccount() {
-	if p.p != nil && p.p["account"] != nil {
-		delete(p.p, "account")
-	}
-}
-
-func (p *CloneVirtualMachineParams) GetAccount() (string, bool) {
-	if p.p == nil {
-		p.p = make(map[string]interface{})
-	}
-	value, ok := p.p["account"].(string)
-	return value, ok
-}
-
-func (p *CloneVirtualMachineParams) SetDomainid(v string) {
-	if p.p == nil {
-		p.p = make(map[string]interface{})
-	}
-	p.p["domainid"] = v
-}
-
-func (p *CloneVirtualMachineParams) ResetDomainid() {
-	if p.p != nil && p.p["domainid"] != nil {
-		delete(p.p, "domainid")
-	}
-}
-
-func (p *CloneVirtualMachineParams) GetDomainid() (string, bool) {
-	if p.p == nil {
-		p.p = make(map[string]interface{})
-	}
-	value, ok := p.p["domainid"].(string)
-	return value, ok
-}
-
-func (p *CloneVirtualMachineParams) SetStartvm(v bool) {
-	if p.p == nil {
-		p.p = make(map[string]interface{})
-	}
-	p.p["startvm"] = v
-}
-
-func (p *CloneVirtualMachineParams) ResetStartvm() {
-	if p.p != nil && p.p["startvm"] != nil {
-		delete(p.p, "startvm")
-	}
-}
-
-func (p *CloneVirtualMachineParams) GetStartvm() (bool, bool) {
-	if p.p == nil {
-		p.p = make(map[string]interface{})
-	}
-	value, ok := p.p["startvm"].(bool)
-	return value, ok
-}
-
-func (p *CloneVirtualMachineParams) SetType(v string) {
-	if p.p == nil {
-		p.p = make(map[string]interface{})
-	}
-	p.p["type"] = v
-}
-
-func (p *CloneVirtualMachineParams) ResetType() {
-	if p.p != nil && p.p["type"] != nil {
-		delete(p.p, "type")
-	}
-}
-
-func (p *CloneVirtualMachineParams) GetType() (string, bool) {
-	if p.p == nil {
-		p.p = make(map[string]interface{})
-	}
-	value, ok := p.p["type"].(string)
-	return value, ok
-}
-
-func (p *CloneVirtualMachineParams) SetZoneid(v []string) {
-	if p.p == nil {
-		p.p = make(map[string]interface{})
-	}
-	p.p["zoneid"] = v
-}
-
-func (p *CloneVirtualMachineParams) ResetZoneid() {
-	if p.p != nil && p.p["zoneid"] != nil {
-		delete(p.p, "zoneid")
-	}
-}
-
-func (p *CloneVirtualMachineParams) GetZoneid() ([]string, bool) {
-	if p.p == nil {
-		p.p = make(map[string]interface{})
-	}
-	value, ok := p.p["zoneid"].([]string)
-	return value, ok
-}
-
-// CloneVirtualMachine
-func (s *VirtualMachineService) NewCloneVirtualMachineParams(virtualmachineid string) *CloneVirtualMachineParams {
-	p := &CloneVirtualMachineParams{}
+// AllocateVbmcToVM
+func (s *VirtualMachineService) NewAllocateVbmcToVMParams(virtualmachineid string) *AllocateVbmcToVMParams {
+	p := &AllocateVbmcToVMParams{}
 	p.p = make(map[string]interface{})
 	p.p["virtualmachineid"] = virtualmachineid
 	return p
 }
 
-func (s *VirtualMachineService) CloneVirtualMachine(p *CloneVirtualMachineParams) (*CloneVirtualMachineResponse, error) {
-	resp, err := s.cs.newRequest("cloneVirtualMachine", p.toURLValues())
+func (s *VirtualMachineService) AllocateVbmcToVM(p *AllocateVbmcToVMParams) (*AllocateVbmcToVMResponse, error) {
+	resp, err := s.cs.newRequest("allocateVbmcToVM", p.toURLValues())
 	if err != nil {
 		return nil, err
 	}
 
-	var r CloneVirtualMachineResponse
+	var r AllocateVbmcToVMResponse
 	if err := json.Unmarshal(resp, &r); err != nil {
 		return nil, err
 	}
@@ -10055,114 +9909,114 @@ func (s *VirtualMachineService) CloneVirtualMachine(p *CloneVirtualMachineParams
 	return &r, nil
 }
 
-type CloneVirtualMachineResponse struct {
-	Account               string                                     `json:"account"`
-	Affinitygroup         []CloneVirtualMachineResponseAffinitygroup `json:"affinitygroup"`
-	Autoscalevmgroupid    string                                     `json:"autoscalevmgroupid"`
-	Autoscalevmgroupname  string                                     `json:"autoscalevmgroupname"`
-	Backupofferingid      string                                     `json:"backupofferingid"`
-	Backupofferingname    string                                     `json:"backupofferingname"`
-	Bootmode              string                                     `json:"bootmode"`
-	Boottype              string                                     `json:"boottype"`
-	Cpunumber             int                                        `json:"cpunumber"`
-	Cpuspeed              int                                        `json:"cpuspeed"`
-	Cpuused               string                                     `json:"cpuused"`
-	Created               string                                     `json:"created"`
-	Details               map[string]string                          `json:"details"`
-	Diskioread            int64                                      `json:"diskioread"`
-	Diskiowrite           int64                                      `json:"diskiowrite"`
-	Diskkbsread           int64                                      `json:"diskkbsread"`
-	Diskkbswrite          int64                                      `json:"diskkbswrite"`
-	Diskofferingid        string                                     `json:"diskofferingid"`
-	Diskofferingname      string                                     `json:"diskofferingname"`
-	Displayname           string                                     `json:"displayname"`
-	Displayvm             bool                                       `json:"displayvm"`
-	Domain                string                                     `json:"domain"`
-	Domainid              string                                     `json:"domainid"`
-	Forvirtualnetwork     bool                                       `json:"forvirtualnetwork"`
-	Group                 string                                     `json:"group"`
-	Groupid               string                                     `json:"groupid"`
-	Guestosid             string                                     `json:"guestosid"`
-	Haenable              bool                                       `json:"haenable"`
-	Hasannotations        bool                                       `json:"hasannotations"`
-	Hostcontrolstate      string                                     `json:"hostcontrolstate"`
-	Hostid                string                                     `json:"hostid"`
-	Hostname              string                                     `json:"hostname"`
-	Hypervisor            string                                     `json:"hypervisor"`
-	Icon                  interface{}                                `json:"icon"`
-	Id                    string                                     `json:"id"`
-	Instancename          string                                     `json:"instancename"`
-	Isdynamicallyscalable bool                                       `json:"isdynamicallyscalable"`
-	Isodisplaytext        string                                     `json:"isodisplaytext"`
-	Isoid                 string                                     `json:"isoid"`
-	Isoname               string                                     `json:"isoname"`
-	JobID                 string                                     `json:"jobid"`
-	Jobstatus             int                                        `json:"jobstatus"`
-	Keypairs              string                                     `json:"keypairs"`
-	Lastupdated           string                                     `json:"lastupdated"`
-	Memory                int                                        `json:"memory"`
-	Memoryintfreekbs      int64                                      `json:"memoryintfreekbs"`
-	Memorykbs             int64                                      `json:"memorykbs"`
-	Memorytargetkbs       int64                                      `json:"memorytargetkbs"`
-	Name                  string                                     `json:"name"`
-	Networkkbsread        int64                                      `json:"networkkbsread"`
-	Networkkbswrite       int64                                      `json:"networkkbswrite"`
-	Nic                   []Nic                                      `json:"nic"`
-	Osdisplayname         string                                     `json:"osdisplayname"`
-	Ostypeid              string                                     `json:"ostypeid"`
-	Password              string                                     `json:"password"`
-	Passwordenabled       bool                                       `json:"passwordenabled"`
-	Pooltype              string                                     `json:"pooltype"`
-	Project               string                                     `json:"project"`
-	Projectid             string                                     `json:"projectid"`
-	Publicip              string                                     `json:"publicip"`
-	Publicipid            string                                     `json:"publicipid"`
-	Readonlydetails       string                                     `json:"readonlydetails"`
-	Receivedbytes         int64                                      `json:"receivedbytes"`
-	Rootdeviceid          int64                                      `json:"rootdeviceid"`
-	Rootdevicetype        string                                     `json:"rootdevicetype"`
-	Securitygroup         []CloneVirtualMachineResponseSecuritygroup `json:"securitygroup"`
-	Sentbytes             int64                                      `json:"sentbytes"`
-	Serviceofferingid     string                                     `json:"serviceofferingid"`
-	Serviceofferingname   string                                     `json:"serviceofferingname"`
-	Servicestate          string                                     `json:"servicestate"`
-	State                 string                                     `json:"state"`
-	Tags                  []Tags                                     `json:"tags"`
-	Templatedisplaytext   string                                     `json:"templatedisplaytext"`
-	Templateid            string                                     `json:"templateid"`
-	Templatename          string                                     `json:"templatename"`
-	Templatetype          string                                     `json:"templatetype"`
-	Userdata              string                                     `json:"userdata"`
-	Userdatadetails       string                                     `json:"userdatadetails"`
-	Userdataid            string                                     `json:"userdataid"`
-	Userdataname          string                                     `json:"userdataname"`
-	Userdatapolicy        string                                     `json:"userdatapolicy"`
-	Userid                string                                     `json:"userid"`
-	Username              string                                     `json:"username"`
-	Vgpu                  string                                     `json:"vgpu"`
-	Vnfdetails            map[string]string                          `json:"vnfdetails"`
-	Vnfnics               []string                                   `json:"vnfnics"`
-	Zoneid                string                                     `json:"zoneid"`
-	Zonename              string                                     `json:"zonename"`
+type AllocateVbmcToVMResponse struct {
+	Account               string                                  `json:"account"`
+	Affinitygroup         []AllocateVbmcToVMResponseAffinitygroup `json:"affinitygroup"`
+	Autoscalevmgroupid    string                                  `json:"autoscalevmgroupid"`
+	Autoscalevmgroupname  string                                  `json:"autoscalevmgroupname"`
+	Backupofferingid      string                                  `json:"backupofferingid"`
+	Backupofferingname    string                                  `json:"backupofferingname"`
+	Bootmode              string                                  `json:"bootmode"`
+	Boottype              string                                  `json:"boottype"`
+	Cpunumber             int                                     `json:"cpunumber"`
+	Cpuspeed              int                                     `json:"cpuspeed"`
+	Cpuused               string                                  `json:"cpuused"`
+	Created               string                                  `json:"created"`
+	Details               map[string]string                       `json:"details"`
+	Diskioread            int64                                   `json:"diskioread"`
+	Diskiowrite           int64                                   `json:"diskiowrite"`
+	Diskkbsread           int64                                   `json:"diskkbsread"`
+	Diskkbswrite          int64                                   `json:"diskkbswrite"`
+	Diskofferingid        string                                  `json:"diskofferingid"`
+	Diskofferingname      string                                  `json:"diskofferingname"`
+	Displayname           string                                  `json:"displayname"`
+	Displayvm             bool                                    `json:"displayvm"`
+	Domain                string                                  `json:"domain"`
+	Domainid              string                                  `json:"domainid"`
+	Forvirtualnetwork     bool                                    `json:"forvirtualnetwork"`
+	Group                 string                                  `json:"group"`
+	Groupid               string                                  `json:"groupid"`
+	Guestosid             string                                  `json:"guestosid"`
+	Haenable              bool                                    `json:"haenable"`
+	Hasannotations        bool                                    `json:"hasannotations"`
+	Hostcontrolstate      string                                  `json:"hostcontrolstate"`
+	Hostid                string                                  `json:"hostid"`
+	Hostname              string                                  `json:"hostname"`
+	Hypervisor            string                                  `json:"hypervisor"`
+	Icon                  interface{}                             `json:"icon"`
+	Id                    string                                  `json:"id"`
+	Instancename          string                                  `json:"instancename"`
+	Isdynamicallyscalable bool                                    `json:"isdynamicallyscalable"`
+	Isodisplaytext        string                                  `json:"isodisplaytext"`
+	Isoid                 string                                  `json:"isoid"`
+	Isoname               string                                  `json:"isoname"`
+	JobID                 string                                  `json:"jobid"`
+	Jobstatus             int                                     `json:"jobstatus"`
+	Keypairs              string                                  `json:"keypairs"`
+	Lastupdated           string                                  `json:"lastupdated"`
+	Memory                int                                     `json:"memory"`
+	Memoryintfreekbs      int64                                   `json:"memoryintfreekbs"`
+	Memorykbs             int64                                   `json:"memorykbs"`
+	Memorytargetkbs       int64                                   `json:"memorytargetkbs"`
+	Name                  string                                  `json:"name"`
+	Networkkbsread        int64                                   `json:"networkkbsread"`
+	Networkkbswrite       int64                                   `json:"networkkbswrite"`
+	Nic                   []Nic                                   `json:"nic"`
+	Osdisplayname         string                                  `json:"osdisplayname"`
+	Ostypeid              string                                  `json:"ostypeid"`
+	Password              string                                  `json:"password"`
+	Passwordenabled       bool                                    `json:"passwordenabled"`
+	Pooltype              string                                  `json:"pooltype"`
+	Project               string                                  `json:"project"`
+	Projectid             string                                  `json:"projectid"`
+	Publicip              string                                  `json:"publicip"`
+	Publicipid            string                                  `json:"publicipid"`
+	Readonlydetails       string                                  `json:"readonlydetails"`
+	Receivedbytes         int64                                   `json:"receivedbytes"`
+	Rootdeviceid          int64                                   `json:"rootdeviceid"`
+	Rootdevicetype        string                                  `json:"rootdevicetype"`
+	Securitygroup         []AllocateVbmcToVMResponseSecuritygroup `json:"securitygroup"`
+	Sentbytes             int64                                   `json:"sentbytes"`
+	Serviceofferingid     string                                  `json:"serviceofferingid"`
+	Serviceofferingname   string                                  `json:"serviceofferingname"`
+	Servicestate          string                                  `json:"servicestate"`
+	State                 string                                  `json:"state"`
+	Tags                  []Tags                                  `json:"tags"`
+	Templatedisplaytext   string                                  `json:"templatedisplaytext"`
+	Templateid            string                                  `json:"templateid"`
+	Templatename          string                                  `json:"templatename"`
+	Templatetype          string                                  `json:"templatetype"`
+	Userdata              string                                  `json:"userdata"`
+	Userdatadetails       string                                  `json:"userdatadetails"`
+	Userdataid            string                                  `json:"userdataid"`
+	Userdataname          string                                  `json:"userdataname"`
+	Userdatapolicy        string                                  `json:"userdatapolicy"`
+	Userid                string                                  `json:"userid"`
+	Username              string                                  `json:"username"`
+	Vgpu                  string                                  `json:"vgpu"`
+	Vnfdetails            map[string]string                       `json:"vnfdetails"`
+	Vnfnics               []string                                `json:"vnfnics"`
+	Zoneid                string                                  `json:"zoneid"`
+	Zonename              string                                  `json:"zonename"`
 }
 
-type CloneVirtualMachineResponseSecuritygroup struct {
-	Account             string                                         `json:"account"`
-	Description         string                                         `json:"description"`
-	Domain              string                                         `json:"domain"`
-	Domainid            string                                         `json:"domainid"`
-	Egressrule          []CloneVirtualMachineResponseSecuritygroupRule `json:"egressrule"`
-	Id                  string                                         `json:"id"`
-	Ingressrule         []CloneVirtualMachineResponseSecuritygroupRule `json:"ingressrule"`
-	Name                string                                         `json:"name"`
-	Project             string                                         `json:"project"`
-	Projectid           string                                         `json:"projectid"`
-	Tags                []Tags                                         `json:"tags"`
-	Virtualmachinecount int                                            `json:"virtualmachinecount"`
-	Virtualmachineids   []interface{}                                  `json:"virtualmachineids"`
+type AllocateVbmcToVMResponseSecuritygroup struct {
+	Account             string                                      `json:"account"`
+	Description         string                                      `json:"description"`
+	Domain              string                                      `json:"domain"`
+	Domainid            string                                      `json:"domainid"`
+	Egressrule          []AllocateVbmcToVMResponseSecuritygroupRule `json:"egressrule"`
+	Id                  string                                      `json:"id"`
+	Ingressrule         []AllocateVbmcToVMResponseSecuritygroupRule `json:"ingressrule"`
+	Name                string                                      `json:"name"`
+	Project             string                                      `json:"project"`
+	Projectid           string                                      `json:"projectid"`
+	Tags                []Tags                                      `json:"tags"`
+	Virtualmachinecount int                                         `json:"virtualmachinecount"`
+	Virtualmachineids   []interface{}                               `json:"virtualmachineids"`
 }
 
-type CloneVirtualMachineResponseSecuritygroupRule struct {
+type AllocateVbmcToVMResponseSecuritygroupRule struct {
 	Account           string `json:"account"`
 	Cidr              string `json:"cidr"`
 	Endport           int    `json:"endport"`
@@ -10175,7 +10029,7 @@ type CloneVirtualMachineResponseSecuritygroupRule struct {
 	Tags              []Tags `json:"tags"`
 }
 
-type CloneVirtualMachineResponseAffinitygroup struct {
+type AllocateVbmcToVMResponseAffinitygroup struct {
 	Account           string   `json:"account"`
 	Description       string   `json:"description"`
 	Domain            string   `json:"domain"`
@@ -10188,7 +10042,7 @@ type CloneVirtualMachineResponseAffinitygroup struct {
 	VirtualmachineIds []string `json:"virtualmachineIds"`
 }
 
-func (r *CloneVirtualMachineResponse) UnmarshalJSON(b []byte) error {
+func (r *AllocateVbmcToVMResponse) UnmarshalJSON(b []byte) error {
 	var m map[string]interface{}
 	err := json.Unmarshal(b, &m)
 	if err != nil {
@@ -10211,6 +10065,6 @@ func (r *CloneVirtualMachineResponse) UnmarshalJSON(b []byte) error {
 		}
 	}
 
-	type alias CloneVirtualMachineResponse
+	type alias AllocateVbmcToVMResponse
 	return json.Unmarshal(b, (*alias)(r))
 }
